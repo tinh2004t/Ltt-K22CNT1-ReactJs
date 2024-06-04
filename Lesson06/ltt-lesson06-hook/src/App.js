@@ -40,8 +40,8 @@ function App() {
         return [
           ...prev,
           lttParam
-        ]
-      })
+        ];
+      });
     }else {//submit khi sua
       console.log("App Edit:", lttParam);
       for (let i = 0; i < lttListTask.length; i++) {
@@ -50,13 +50,16 @@ function App() {
           lttListTask[i] = lttParam;
         }
         console.log(lttListTask);
-        setLttAddOrEdit(LttListTask);
+        // setLttAddOrEdit(LttListTask);
+        setLttListTasks((prev) => {
+        return [...prev];
+      });
       }
     
     }
     useEffect(() => {
       setLttListTask(lttListTask);
-    },[lttlistTask]);
+    },[lttListTask]);
   }
    
   return (
