@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-export default function NhpTaskAddOrEdit({lttOnSubmit, studentEdit, isEdit}) {
-    // Doi tuong Task
+export default function LttStudentAddOrEdit({lttOnSubmit, studentEdit, isEdit}) {
+    // Doi tuong Student
     
     const [lttStudent, setLttStudent] = useState(studentEdit);
     

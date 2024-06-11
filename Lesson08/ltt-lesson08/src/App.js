@@ -1,7 +1,7 @@
 import './App.css';
 import { useState } from 'react';
-import NhpListTask from './components/NhpListTask';
-import NhpTaskAddOrEdit from './components/NhpTaskAddOrEdit';
+import LttListStudent from './components/LttListStudent';
+import LttStudentAddOrEdit from './components/LttStudentAddOrEdit';
 
 function App() {
   const ltt_Student = [
@@ -59,11 +59,11 @@ function App() {
       <h1>Le Tuan Tinh - K22CNT1</h1>
       <hr/>
       <div>
-        {/*Danh sach list Task*/}
-        <NhpListTask renderLttListTasks = {lttListStudent} removeItem={removeItem} editItem={editItem}/>
+        {/*Danh sach list Student*/}
+        <LttListStudent renderLttListStudents = {lttListStudent} removeItem={removeItem} editItem={editItem}/>
       </div>
       <div>
-        <NhpTaskAddOrEdit lttOnSubmit={lttHandleSubmit} studentEdit={studentEdit} isEdit={isEdit}/>
+        <LttStudentAddOrEdit lttOnSubmit={lttHandleSubmit} studentEdit={studentEdit} isEdit={isEdit}/>
       </div>
     </div>
     

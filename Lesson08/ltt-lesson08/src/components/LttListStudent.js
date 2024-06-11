@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function LttListTask({renderLttListTasks, removeItem, editItem}) {
+export default function LttListStuent({renderLttListStudents, removeItem, editItem}) {
 
     //render data
 
-    let lttElementStudent = renderLttListTasks.map((student, index) => {
+    let lttElementStudent = renderLttListStudents.map((student, index) => {
         return (
             <>
                 <tr key={index}>
