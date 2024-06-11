@@ -5,11 +5,11 @@ import LttStudentAddOrEdit from './components/LttStudentAddOrEdit';
 
 function App() {
   const ltt_Student = [
-    { ltt_Id:2210900119, ltt_Name:"Le Tuan Tinh", ltt_Age:23 },
-    { ltt_Id:1, ltt_Name:"Nguyen Phuong Dung", ltt_Age:12 },
-    { ltt_Id:2, ltt_Name:"Tinhneee",ltt_Age:22},
-    { ltt_Id:3, ltt_Name:"ZUMMZUMZMM",ltt_Age:20},
-    { ltt_Id:4, ltt_Name:"DUMDUMDUM",ltt_Age:19},
+    { ltt_Id:2210900119, ltt_Name:"Le Tuan Tinh", ltt_Age:23,lttIsActive:true },
+    { ltt_Id:1, ltt_Name:"Nguyen Phuong Dung", ltt_Age:12,lttIsActive:true },
+    { ltt_Id:2, ltt_Name:"Tinhneee",ltt_Age:22,lttIsActive:false},
+    { ltt_Id:3, ltt_Name:"ZUMMZUMZMM",ltt_Age:20,lttIsActive:false},
+    { ltt_Id:4, ltt_Name:"DUMDUMDUM",ltt_Age:19,lttIsActive:true},
    ];
    const lttStudentOpj = { 
     ltt_Id: 0,
