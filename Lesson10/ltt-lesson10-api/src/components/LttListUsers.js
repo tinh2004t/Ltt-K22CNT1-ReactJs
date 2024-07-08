@@ -12,7 +12,7 @@ export default function LttListUsers({ renderLttListUsers, onLttDelete  }) {
     
     const lttHandleDelete = async (param) => {
         if(window.confirm("Ban co muon xoa khong?")){
-            const lttRes = axios.delete("lttUsers/"+param.id);
+            const lttRes = axios.delete("lttUsers/"+param.M);
         }
         onLttDelete();
     }

@@ -1,9 +1,13 @@
 import React from 'react'
 import axios from '../api/LttApi';
 
-export default function LttListStudent({ renderLttListStudent, onLttDelete  }) {
+export default function LttListStudent({ renderLttListStudent, onLttDelete , onLttEdit }) {
     console.log("LttListStudent:", renderLttListStudent);
-
+    const lttHandleEdit = (student) => {
+        // Call a function passed from the parent component to handle the edit operation
+        // You can pass the student object to the parent component
+        onLttEdit(student);
+      };
 
     // Check if renderLttListUsers is an array
     if (!Array.isArray(renderLttListStudent)) {
@@ -11,10 +15,12 @@ export default function LttListStudent({ renderLttListStudent, onLttDelete  }) {
     }
     
     const lttHandleDelete = async (param) => {
-        if(window.confirm("Ban co muon xoa khong?")){
-            const lttRes = axios.delete("LttSinhVien/"+param.MaSV);
+        if (window.confirm("Ban co muon xoa khong?")) {
+                const lttRes = await axios.delete("LttSinhVien/" + param.LttMaSV);
+                console.log("LttSinhVien/" + param.LttMaSV);
+                // Optionally, you can update the list after successful deletion
+                onLttDelete();
         }
-        onLttDelete();
     }
     // Render the list of users
     let lttElementStudent = renderLttListStudent.map((LttSinhVien, index) => {
@@ -31,8 +37,8 @@ export default function LttListStudent({ renderLttListStudent, onLttDelete  }) {
                     <td>{LttSinhVien.LttHocBong}</td>
                     <td>{LttSinhVien.LttDiemTrungBinh}</td>
                     <td>
-                        <button className='btn btn-success'>Edit</button>
-                        <button className='btn btn-danger' onClick={lttHandleDelete}>Remove</button>
+                        <button className='btn btn-success' onClick={() => lttHandleEdit(LttSinhVien)}>Edit</button>
+                        <button className='btn btn-danger' onClick={()=>lttHandleDelete(LttSinhVien)}>Remove</button>
                     </td>
                 </tr>
             </>
