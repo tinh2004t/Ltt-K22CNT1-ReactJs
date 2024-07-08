@@ -37,17 +37,16 @@ const LttApp = () => {
   const lttHandleClose = (param) => {
     setLttAddOrEdit(param);
   }
-  const lttHandleSubmit  = (param) => {
+  const lttHandleSubmit = (param) => {
     lttGetAllUsers();
     setLttAddOrEdit(param);
   }
   const LttHandleDelete = () => {
     lttGetAllUsers();
-};
-  let lttElementForm = lttAddOrEdit === true ? <LttAddOrEdit renderUser={lttUser} /> : "";
-  <LttAddOrEdit renderUsers={lttUser}
-    onLttClose={lttHandleClose} 
-    onLttSubmitForm={lttHandleSubmit}/>
+  };
+  let lttElementForm = lttAddOrEdit === true ? <LttAddOrEdit renderUser={lttUser} onLttClose={lttHandleClose}
+    onLttSubmitForm={lttHandleSubmit} /> : "";
+
   return (
     <div className='container border my-3'>
       <h1>Lam viec voi API</h1>
