@@ -25,10 +25,10 @@ export default function LttApp() {
   }
 
   const lttObjTableName = {
-    "lttId": "2210900130",
-    "lttTbName": "Le Tuan Tinh",
-    "lttTbEmail": "tinh2426@gmail.com",
-    "lttTbPhone": "0123123",
+    "lttId": "",
+    "lttTbName": "",
+    "lttTbEmail": "",
+    "lttTbPhone": "",
     "lttTbStatus": true
   }
 

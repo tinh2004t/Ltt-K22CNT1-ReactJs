@@ -1,13 +1,15 @@
 import axios from '../ltt_apis/ltt-2210900130';
 import React, { useEffect, useState } from 'react'
 
-export default function LttFormTableName({renderLttTableName, onLttEdit, onLttAdd}) {
+export default function LttFormTableName({ renderLttTableName, onLttEdit, onLttAdd }) {
 
     const [lttId, setLttId] = useState(renderLttTableName.lttId);
     const [lttTbName, setLttTbName] = useState(renderLttTableName.lttTbName);
     const [lttTbEmail, setLttTbEmail] = useState(renderLttTableName.lttTbEmail);
     const [lttTbPhone, setLttTbPhone] = useState(renderLttTableName.lttTbPhone);
     const [lttTbStatus, setLttTbStatus] = useState(renderLttTableName.lttTbStatus);
+
+    const [isAdding, setIsAdding] = useState(false);
 
     useEffect(() => {
 
@@ -16,13 +18,15 @@ export default function LttFormTableName({renderLttTableName, onLttEdit, onLttAd
         setLttTbEmail(renderLttTableName.lttTbEmail);
         setLttTbPhone(renderLttTableName.lttTbPhone);
         setLttTbStatus(renderLttTableName.lttTbStatus);
-    },[renderLttTableName])
+        setIsAdding(false);
+    }, [renderLttTableName])
 
-    const [isAdding, setIsAdding] = useState(false);
+
+
 
     const lttHandleSubmit = async (lttEvent) => {
         lttEvent.preventDefault();
-    
+
         const lttObjTableName = {
             "lttTbName": lttTbName,
             "lttTbEmail": lttTbEmail,
@@ -31,24 +35,25 @@ export default function LttFormTableName({renderLttTableName, onLttEdit, onLttAd
             "lttId": lttId
         }
         console.log(lttObjTableName);
-    
-        if (isAdding) {
-            // Adding new data
-            await axios.post("lttTableName", lttObjTableName);
-            onLttAdd(lttObjTableName);
-            setIsAdding(false);
-        } else {
-            // Editing existing data
-            await axios.put("lttTableName/" + lttObjTableName.lttId, lttObjTableName);
-            onLttEdit(lttObjTableName);
+
+        try {
+            if (isAdding) {
+                const lttRes = await axios.post("lttTableName", lttObjTableName);
+                onLttAdd(lttRes.data);
+            } else {
+                const lttRes = await axios.put("lttTableName/" + lttId, lttObjTableName);
+                onLttEdit(lttRes.data);
+            }
+        } catch (error) {
+            window.alert("Vui Long Xem Lai Id va cac du lieu trong form");
         }
     }
 
-   
+
 
     const handleEditButton = (existingData) => {
         setIsAdding(false);
-        // Populate form fields with existingData
+        // Populate form fields with existingData   
     }
     const handleAddButton = () => {
         setLttId('');
@@ -58,16 +63,16 @@ export default function LttFormTableName({renderLttTableName, onLttEdit, onLttAd
         setLttTbStatus(true);
         // Set a flag to indicate we're adding a new record
         setIsAdding(true);
-      };
-      
+    };
+
 
     return (
         <div>
             <button type="button" className="btn btn-primary my-3 mx-2" onClick={handleAddButton}>
-  Ltt Add
-</button>
+                Ltt Add
+            </button>
 
-<h2>{isAdding ? 'Form xu ly du lieu Them Moi' : 'Form xu ly du lieu Edit'}</h2>
+            <h2>{isAdding ? 'Form xu ly du lieu Them Moi' : 'Form xu ly du lieu Edit'}</h2>
 
             <form>
                 <div className="input-group mb-3">
@@ -124,7 +129,7 @@ export default function LttFormTableName({renderLttTableName, onLttEdit, onLttAd
                         <option value={false}>Non-Active</option>
 
                     </select>
-                    
+
                 </div>
 
                 <button type="submit" className="btn btn-primary my-3" name='btnLttSave' onClick={lttHandleSubmit}>Ltt Save</button>
